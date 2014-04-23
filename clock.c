@@ -96,7 +96,7 @@ static void init(void)
         cliclock->geo.x = 0;
     if(!cliclock->geo.y)
         cliclock->geo.y = 0;
-    cliclock->geo.w = 73;
+    cliclock->geo.w = 74;
     /*54*/
     cliclock->geo.h = 7;
     cliclock->tm = localtime(&(cliclock->lt));
@@ -106,7 +106,7 @@ static void init(void)
     /* Create clock win */ 
     cliclock->framewin = newwin(cliclock->geo.h,
             cliclock->geo.w,
-            cliclock->geo.x,
+            cliclock->geo.x, 
             cliclock->geo.y);
     clock_move((LINES / 2 - (cliclock->geo.h / 2)),
             (COLS  / 2 - (cliclock->geo.w / 2)));
@@ -114,6 +114,7 @@ static void init(void)
     nodelay(stdscr, true);
     /*box(cliclock->framewin, 0, 0);
      */
+     
      
      
     wrefresh(cliclock->framewin);
@@ -190,30 +191,30 @@ static void draw_clock(void)
     draw_number(cliclock->date.second[0], 1, 39);
     draw_number(cliclock->date.second[1], 1, 46);
 
-    mvwaddstr(cliclock->framewin, 1, 57, "      ");
-    mvwaddstr(cliclock->framewin, 2, 57, "  ");
-    mvwaddstr(cliclock->framewin, 2, 61, "  ");
-    mvwaddstr(cliclock->framewin, 3, 57, "      ");
-    mvwaddstr(cliclock->framewin, 4, 57, "  ");
-    mvwaddstr(cliclock->framewin, 5, 57, "  ");
+    mvwaddstr(cliclock->framewin, 1, 58, "      ");
+    mvwaddstr(cliclock->framewin, 2, 58, "  ");
+    mvwaddstr(cliclock->framewin, 2, 62, "  ");
+    mvwaddstr(cliclock->framewin, 3, 58, "      ");
+    mvwaddstr(cliclock->framewin, 4, 58, "  ");
+    mvwaddstr(cliclock->framewin, 5, 58, "  ");
     if(cliclock->tm->tm_hour < 12)
      /*if(true)*/
-    {   mvwaddstr(cliclock->framewin, 4, 61, "  ");
-        mvwaddstr(cliclock->framewin, 5, 61, "  ");}
+    {   mvwaddstr(cliclock->framewin, 4, 62, "  ");
+        mvwaddstr(cliclock->framewin, 5, 62, "  ");}
         
-    mvwaddstr(cliclock->framewin, 1, 64, "        ");
-    mvwaddstr(cliclock->framewin, 2, 64, "  ");
-    mvwaddstr(cliclock->framewin, 3, 64, "  ");
-    mvwaddstr(cliclock->framewin, 4, 64, "  ");
-    mvwaddstr(cliclock->framewin, 5, 64, "  ");
-    mvwaddstr(cliclock->framewin, 2, 67, "  ");
-    mvwaddstr(cliclock->framewin, 3, 67, "  ");
-    mvwaddstr(cliclock->framewin, 4, 67, "  ");
-    mvwaddstr(cliclock->framewin, 5, 67, "  ");
-    mvwaddstr(cliclock->framewin, 2, 70, "  ");
-    mvwaddstr(cliclock->framewin, 3, 70, "  ");
-    mvwaddstr(cliclock->framewin, 4, 70, "  ");
-    mvwaddstr(cliclock->framewin, 5, 70, "  ");
+    mvwaddstr(cliclock->framewin, 1, 65, "        ");
+    mvwaddstr(cliclock->framewin, 2, 65, "  ");
+    mvwaddstr(cliclock->framewin, 3, 65, "  ");
+    mvwaddstr(cliclock->framewin, 4, 65, "  ");
+    mvwaddstr(cliclock->framewin, 5, 65, "  ");
+    mvwaddstr(cliclock->framewin, 2, 68, "  ");
+    mvwaddstr(cliclock->framewin, 3, 68, "  ");
+    mvwaddstr(cliclock->framewin, 4, 68, "  ");
+    mvwaddstr(cliclock->framewin, 5, 68, "  ");
+    mvwaddstr(cliclock->framewin, 2, 71, "  ");
+    mvwaddstr(cliclock->framewin, 3, 71, "  ");
+    mvwaddstr(cliclock->framewin, 4, 71, "  ");
+    mvwaddstr(cliclock->framewin, 5, 71, "  ");
 }
 static void clock_move(int x, int y)
 {
