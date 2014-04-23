@@ -1,5 +1,6 @@
 /*
- * Thanks to xorg62 for tty-clock
+ * Thanks to xorg62 for tty-clock,
+ *      and yrmt for cliclock.
  */
 #include <stdlib.h>
 #include <time.h>
