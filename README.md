@@ -6,5 +6,8 @@
 
 - Use 'q' to quit
 
+Screenshot:
+![](http://a.pomf.se/qtrwef.png)
+
 
 Fork of the cliclock by yrmt.

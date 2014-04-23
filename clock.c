@@ -81,6 +81,7 @@ static void init(void)
     init_pair(0, cliclock->bg, cliclock->bg);
     init_pair(1, cliclock->bg, cliclock->option.color);
     init_pair(2, cliclock->option.color, cliclock->bg);
+    init_pair(3, -1, COLOR_BLUE);
 
     refresh();
 
@@ -177,20 +178,21 @@ static void draw_clock(void)
     draw_number(cliclock->date.hour[0], 1, 1);
     draw_number(cliclock->date.hour[1], 1, 8);
     /* 2 dot for number separation */
-    wbkgdset(cliclock->framewin, COLOR_PAIR(1));
+    wbkgdset(cliclock->framewin, COLOR_PAIR(3));
     mvwaddstr(cliclock->framewin, 2, 16, "  ");
     mvwaddstr(cliclock->framewin, 4, 16, "  ");
     /* Draw minute numbers */
     draw_number(cliclock->date.minute[0], 1, 20);
     draw_number(cliclock->date.minute[1], 1, 27);
     /* 2 dot for number separation */
-    wbkgdset(cliclock->framewin, COLOR_PAIR(1));
+    wbkgdset(cliclock->framewin, COLOR_PAIR(3));
     mvwaddstr(cliclock->framewin, 2, 35, "  ");
     mvwaddstr(cliclock->framewin, 4, 35, "  ");
     /* Draw second numbers */
     draw_number(cliclock->date.second[0], 1, 39);
     draw_number(cliclock->date.second[1], 1, 46);
-
+    /* Draw AM or PM */
+    wbkgdset(cliclock->framewin, COLOR_PAIR(3));
     mvwaddstr(cliclock->framewin, 1, 58, "      ");
     mvwaddstr(cliclock->framewin, 2, 58, "  ");
     mvwaddstr(cliclock->framewin, 2, 62, "  ");
