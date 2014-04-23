@@ -8,7 +8,7 @@
 
 Screenshot:
 
-    ![](http://a.pomf.se/qtrwef.png)
+![](http://a.pomf.se/qtrwef.png)
 
 
 Fork of the cliclock by yrmt.
