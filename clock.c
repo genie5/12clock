@@ -15,8 +15,8 @@
  * COLOR_MAGENTA
  * COLOR_CYAN
  * COLOR_WHITE */
-#define DEFAULT_FG_COLOR COLOR_BLUE
-#define DEFAULT_FG_COLOR_NAME "blue"
+#define DEFAULT_FG_COLOR COLOR_WHITE
+#define DEFAULT_FG_COLOR_NAME "white"
 
 typedef struct {
     bool running;
@@ -95,7 +95,8 @@ static void init(void)
         cliclock->geo.x = 0;
     if(!cliclock->geo.y)
         cliclock->geo.y = 0;
-    cliclock->geo.w = 54;
+    cliclock->geo.w = 73;
+    /*54*/
     cliclock->geo.h = 7;
     cliclock->tm = localtime(&(cliclock->lt));
     cliclock->lt = time(NULL);
@@ -110,6 +111,10 @@ static void init(void)
             (COLS  / 2 - (cliclock->geo.w / 2)));
     wborder(cliclock->framewin, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     nodelay(stdscr, true);
+    /*box(cliclock->framewin, 0, 0);
+     */
+     
+     
     wrefresh(cliclock->framewin);
 
     return;
@@ -133,8 +138,13 @@ static void update_hour(void)
     cliclock->lt = time(NULL);
     ihour = cliclock->tm->tm_hour;
     /* Set hour */
-    cliclock->date.hour[0] = ihour / 10;
-    cliclock->date.hour[1] = ihour % 10;
+    cliclock->date.hour[0] = (ihour % 12) / 10;
+    cliclock->date.hour[1] = (ihour % 12) % 10;
+    if ((ihour % 12) == 0)
+    {
+        cliclock->date.hour[0] = 1;
+        cliclock->date.hour[1] = 2;
+    } 
     /* Set minutes */
     cliclock->date.minute[0] = cliclock->tm->tm_min / 10;
     cliclock->date.minute[1] = cliclock->tm->tm_min % 10;
@@ -178,6 +188,31 @@ static void draw_clock(void)
     /* Draw second numbers */
     draw_number(cliclock->date.second[0], 1, 39);
     draw_number(cliclock->date.second[1], 1, 46);
+
+    mvwaddstr(cliclock->framewin, 1, 57, "      ");
+    mvwaddstr(cliclock->framewin, 2, 57, "  ");
+    mvwaddstr(cliclock->framewin, 2, 61, "  ");
+    mvwaddstr(cliclock->framewin, 3, 57, "      ");
+    mvwaddstr(cliclock->framewin, 4, 57, "  ");
+    mvwaddstr(cliclock->framewin, 5, 57, "  ");
+    if(cliclock->tm->tm_hour < 12)
+     /*if(true)*/
+    {   mvwaddstr(cliclock->framewin, 4, 61, "  ");
+        mvwaddstr(cliclock->framewin, 5, 61, "  ");}
+        
+    mvwaddstr(cliclock->framewin, 1, 64, "        ");
+    mvwaddstr(cliclock->framewin, 2, 64, "  ");
+    mvwaddstr(cliclock->framewin, 3, 64, "  ");
+    mvwaddstr(cliclock->framewin, 4, 64, "  ");
+    mvwaddstr(cliclock->framewin, 5, 64, "  ");
+    mvwaddstr(cliclock->framewin, 2, 67, "  ");
+    mvwaddstr(cliclock->framewin, 3, 67, "  ");
+    mvwaddstr(cliclock->framewin, 4, 67, "  ");
+    mvwaddstr(cliclock->framewin, 5, 67, "  ");
+    mvwaddstr(cliclock->framewin, 2, 70, "  ");
+    mvwaddstr(cliclock->framewin, 3, 70, "  ");
+    mvwaddstr(cliclock->framewin, 4, 70, "  ");
+    mvwaddstr(cliclock->framewin, 5, 70, "  ");
 }
 static void clock_move(int x, int y)
 {
